@@ -63,3 +63,7 @@ Acest folder e propriul lui repo GitHub (`FeelVoyage-Reviews`), separat de site-
 - **Fără Firebase Storage** — pozele din recenzii sunt comprimate direct în browser (pe site-ul principal, la trimitere) și stocate direct în baza de date, nu într-un serviciu de fișiere separat.
 
 **Actualizare sesiune curentă:** banner cu poza destinației în fereastra de recenzii (în loc de antet gol), lightbox pentru mărirea pozelor din recenzii, destinations.js sincronizat cu site-ul principal (include acum și cele 3 parcuri tematice + Băile Săcelu).
+
+**Actualizare sesiune curentă:** `destinations.js` + `img3/` sincronizate cu site-ul principal (Disneyland Paris și Legoland deschise pentru comenzi pe site-ul principal; poze noi pentru Castelul Corvinilor, Laponia, Ierusalim).
+
+**Actualizare sesiune curentă:** `css/tailwind.css` reconstruit corect (`npm install && npm run build:css`) — era precompilat și scăpa silențios clase noi (de-asta nu mergea zoom-ul pe poze). Lightbox rescris complet (cadru alb, săgeți, contor, z-index corect). Banner mai mic în fereastra de recenzii.

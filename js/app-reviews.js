@@ -115,7 +115,8 @@
     function reviewCardHtml(r) {
         const dateStr = r.createdAt ? new Date(r.createdAt).toLocaleDateString(currentLang === 'ro' ? 'ro-RO' : currentLang) : '';
         const langTag = r.lang && r.lang !== currentLang ? '<span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">' + (LANG_FLAGS[r.lang] || '') + ' ' + ui('writtenIn') + ' ' + (LANG_NAMES[r.lang] || r.lang) + '</span>' : '';
-        const photosHtml = (r.photos && r.photos.length) ? '<div class="flex gap-2 mt-3 flex-wrap">' + r.photos.map(function (p) { return '<img src="' + esc(p) + '" data-lightbox-src="' + esc(p) + '" class="w-16 h-16 rounded-lg object-cover border border-slate-200 cursor-zoom-in hover:opacity-80 transition" alt="">'; }).join('') + '</div>' : '';
+        const photosJson = (r.photos && r.photos.length) ? esc(JSON.stringify(r.photos)) : '';
+        const photosHtml = (r.photos && r.photos.length) ? '<div class="flex gap-2 mt-3 flex-wrap">' + r.photos.map(function (p, i) { return '<img src="' + esc(p) + '" data-photos="' + photosJson + '" data-idx="' + i + '" class="w-16 h-16 rounded-lg object-cover border border-slate-200 fv-photo-thumb" alt="">'; }).join('') + '</div>' : '';
         const block = function (label, text, colorClass) {
             if (!text) return '';
             return '<p class="mt-2"><span class="text-[11px] font-extrabold uppercase tracking-wide ' + colorClass + '">' + esc(label) + '</span><br><span class="text-sm text-slate-700">' + esc(text) + '</span></p>';
@@ -166,10 +167,11 @@
         const btn = e.target.closest('.dest-card');
         if (btn) openReviews(btn.getAttribute('data-dest-id'));
     });
-    // click pe o poză dintr-o recenzie: o mărește (js/lightbox.js)
+    // click pe o poză dintr-o recenzie: o mărește, cu săgeți prin restul pozelor aceleiași recenzii (js/lightbox.js)
     listEl.addEventListener('click', function (e) {
-        const pic = e.target.closest('[data-lightbox-src]');
-        if (pic && typeof window.fvOpenLightbox === 'function') window.fvOpenLightbox(pic.getAttribute('data-lightbox-src'), '');
+        const pic = e.target.closest('[data-photos]');
+        if (!pic || typeof window.fvOpenLightbox !== 'function') return;
+        try { window.fvOpenLightbox(JSON.parse(pic.getAttribute('data-photos')), parseInt(pic.getAttribute('data-idx'), 10) || 0); } catch (err) { }
     });
     document.getElementById('closeReviewsModal').addEventListener('click', closeReviews);
     modal.addEventListener('click', function (e) { if (e.target === modal) closeReviews(); });
