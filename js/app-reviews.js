@@ -66,14 +66,14 @@
         const t = getDestinationText(d);
         const stats = statsCache[d.id] || { avg: 5, count: 0 };
         const img = (d.images && d.images[0]) || '';
-        return '<button type="button" data-dest-id="' + esc(d.id) + '" class="dest-card text-left bg-white border border-black/10 rounded-2xl overflow-hidden hover:border-black hover:shadow-lg transition-all group">' +
-            '<div class="h-36 bg-black/5 overflow-hidden"><img src="' + esc(img) + '" alt="" loading="lazy" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"></div>' +
+        return '<button type="button" data-dest-id="' + esc(d.id) + '" class="dest-card text-left bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-brand-300 hover:shadow-xl transition-all group">' +
+            '<div class="h-40 bg-slate-100 overflow-hidden"><img src="' + esc(img) + '" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"></div>' +
             '<div class="p-4">' +
                 '<p class="font-bold text-sm leading-snug mb-1.5">' + esc(t.title) + '</p>' +
                 '<div class="flex items-center gap-1.5 text-xs">' +
-                    '<span class="text-black">' + starsHtml(stats.avg, 'text-[11px]') + '</span>' +
+                    '<span class="text-amber-500">' + starsHtml(stats.avg, 'text-[11px]') + '</span>' +
                     '<span class="font-bold">' + stats.avg.toFixed(1) + '</span>' +
-                    '<span class="text-black/40">(' + stats.count + ' ' + (stats.count === 1 ? ui('review1') : ui('reviews')) + ')</span>' +
+                    '<span class="text-slate-400">(' + stats.count + ' ' + (stats.count === 1 ? ui('review1') : ui('reviews')) + ')</span>' +
                 '</div>' +
             '</div>' +
         '</button>';
@@ -113,23 +113,23 @@
 
     function reviewCardHtml(r) {
         const dateStr = r.createdAt ? new Date(r.createdAt).toLocaleDateString(currentLang === 'ro' ? 'ro-RO' : currentLang) : '';
-        const langTag = r.lang && r.lang !== currentLang ? '<span class="text-[10px] font-bold text-black/40 uppercase tracking-wide">' + (LANG_FLAGS[r.lang] || '') + ' ' + ui('writtenIn') + ' ' + (LANG_NAMES[r.lang] || r.lang) + '</span>' : '';
-        const photosHtml = (r.photos && r.photos.length) ? '<div class="flex gap-2 mt-3 flex-wrap">' + r.photos.map(function (p) { return '<img src="' + p + '" class="w-16 h-16 rounded-lg object-cover border border-black/10">'; }).join('') + '</div>' : '';
+        const langTag = r.lang && r.lang !== currentLang ? '<span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">' + (LANG_FLAGS[r.lang] || '') + ' ' + ui('writtenIn') + ' ' + (LANG_NAMES[r.lang] || r.lang) + '</span>' : '';
+        const photosHtml = (r.photos && r.photos.length) ? '<div class="flex gap-2 mt-3 flex-wrap">' + r.photos.map(function (p) { return '<img src="' + p + '" class="w-16 h-16 rounded-lg object-cover border border-slate-200">'; }).join('') + '</div>' : '';
         const block = function (label, text, colorClass) {
             if (!text) return '';
-            return '<p class="mt-2"><span class="text-[11px] font-extrabold uppercase tracking-wide ' + colorClass + '">' + esc(label) + '</span><br><span class="text-sm text-black/80">' + esc(text) + '</span></p>';
+            return '<p class="mt-2"><span class="text-[11px] font-extrabold uppercase tracking-wide ' + colorClass + '">' + esc(label) + '</span><br><span class="text-sm text-slate-700">' + esc(text) + '</span></p>';
         };
-        return '<div class="pb-5 border-b border-black/10 last:border-0">' +
+        return '<div class="pb-5 border-b border-slate-100 last:border-0">' +
             '<div class="flex items-start justify-between gap-3">' +
                 '<div class="flex items-center gap-3 min-w-0">' +
-                    '<div class="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center font-bold text-xs flex-shrink-0">' + esc(initialsOf(r.name)) + '</div>' +
-                    '<div class="min-w-0"><p class="font-bold text-sm truncate">' + esc(r.name || 'Călător FeelVoyage') + '</p><p class="text-[11px] text-black/40">' + esc(dateStr) + '</p></div>' +
+                    '<div class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-600 to-sunset-500 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">' + esc(initialsOf(r.name)) + '</div>' +
+                    '<div class="min-w-0"><p class="font-bold text-sm text-slate-800 truncate">' + esc(r.name || 'Călător FeelVoyage') + '</p><p class="text-[11px] text-slate-400">' + esc(dateStr) + '</p></div>' +
                 '</div>' +
-                '<div class="text-black text-xs shrink-0">' + starsHtml(r.rating) + '</div>' +
+                '<div class="text-amber-500 text-xs shrink-0">' + starsHtml(r.rating) + '</div>' +
             '</div>' +
             block(ui('positive'), r.positive, 'text-emerald-700') +
             block(ui('negative'), r.negative, 'text-rose-700') +
-            block(ui('extra'), r.extra, 'text-black/50') +
+            block(ui('extra'), r.extra, 'text-slate-500') +
             photosHtml +
             (langTag ? '<p class="mt-2">' + langTag + '</p>' : '') +
         '</div>';
@@ -141,17 +141,17 @@
         const t = getDestinationText(d);
         titleEl.textContent = t.title;
         statsEl.innerHTML = '';
-        listEl.innerHTML = '<p class="text-center text-black/30 text-sm py-10"><i class="fa-solid fa-spinner fa-spin"></i></p>';
+        listEl.innerHTML = '<p class="text-center text-slate-300 text-sm py-10"><i class="fa-solid fa-spinner fa-spin"></i></p>';
         modal.classList.remove('hidden');
         requestAnimationFrame(function () { panel.classList.remove('scale-95', 'opacity-0'); });
         document.body.classList.add('overflow-hidden');
 
         if (unsubReviews) { unsubReviews(); unsubReviews = null; }
         window.FVReviewsBackend.onReviewStats(destId, function (stats) {
-            statsEl.innerHTML = '<span class="text-black text-sm">' + starsHtml(stats.avg, 'text-xs') + '</span><span class="font-bold">' + stats.avg.toFixed(1) + '</span><span class="text-black/40">(' + stats.count + ' ' + (stats.count === 1 ? ui('review1') : ui('reviews')) + ')</span>';
+            statsEl.innerHTML = '<span class="text-amber-500 text-sm">' + starsHtml(stats.avg, 'text-xs') + '</span><span class="font-bold text-slate-800">' + stats.avg.toFixed(1) + '</span><span class="text-slate-400">(' + stats.count + ' ' + (stats.count === 1 ? ui('review1') : ui('reviews')) + ')</span>';
         });
         unsubReviews = window.FVReviewsBackend.onDestinationReviews(destId, function (list) {
-            listEl.innerHTML = list.length ? list.map(reviewCardHtml).join('') : '<p class="text-center text-black/30 text-sm py-10">' + ui('noReviews') + '</p>';
+            listEl.innerHTML = list.length ? list.map(reviewCardHtml).join('') : '<p class="text-center text-slate-300 text-sm py-10">' + ui('noReviews') + '</p>';
         });
     }
     function closeReviews() {

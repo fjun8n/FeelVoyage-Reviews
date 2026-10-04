@@ -1,5 +1,30 @@
-/** Configurație Tailwind separată pentru FeelVoyage Reviews (site distinct, propriul lui css/tailwind.css) */
+/** Configurație Tailwind pentru FeelVoyage Reviews — identică la culori/fonturi cu site-ul principal,
+   ca designul să fie exact același (vezi ../tailwind.config.js) */
 module.exports = {
     content: ['./index.html', './js/**/*.js'],
-    theme: { extend: {} }
+    darkMode: 'class',
+    theme: {
+        extend: {
+            colors: {
+                brand: {
+                    50: '#f0f7ff',
+                    100: '#e0effe',
+                    500: '#0284c7',
+                    600: '#0369a1',
+                    800: '#075985',
+                    900: '#0c4a6e',
+                },
+                sunset: {
+                    400: '#fb7185',
+                    500: '#f43f5e',
+                    600: '#e11d48',
+                    gold: '#f59e0b',
+                }
+            },
+            fontFamily: {
+                sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                serif: ['"Volkhov"', 'serif'],
+            }
+        }
+    }
 };
