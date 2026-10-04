@@ -61,3 +61,5 @@ Acest folder e propriul lui repo GitHub (`FeelVoyage-Reviews`), separat de site-
 
 - **Fără autentificare pe acest site** — nu e nevoie, de vreme ce nu se poate scrie nimic aici, doar citi.
 - **Fără Firebase Storage** — pozele din recenzii sunt comprimate direct în browser (pe site-ul principal, la trimitere) și stocate direct în baza de date, nu într-un serviciu de fișiere separat.
+
+**Actualizare sesiune curentă:** banner cu poza destinației în fereastra de recenzii (în loc de antet gol), lightbox pentru mărirea pozelor din recenzii, destinations.js sincronizat cu site-ul principal (include acum și cele 3 parcuri tematice + Băile Săcelu).

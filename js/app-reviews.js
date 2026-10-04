@@ -109,12 +109,13 @@
     const titleEl = document.getElementById('reviewsModalTitle');
     const statsEl = document.getElementById('reviewsModalStats');
     const listEl = document.getElementById('reviewsModalList');
+    const bannerEl = document.getElementById('reviewsModalBanner');
     let unsubReviews = null;
 
     function reviewCardHtml(r) {
         const dateStr = r.createdAt ? new Date(r.createdAt).toLocaleDateString(currentLang === 'ro' ? 'ro-RO' : currentLang) : '';
         const langTag = r.lang && r.lang !== currentLang ? '<span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">' + (LANG_FLAGS[r.lang] || '') + ' ' + ui('writtenIn') + ' ' + (LANG_NAMES[r.lang] || r.lang) + '</span>' : '';
-        const photosHtml = (r.photos && r.photos.length) ? '<div class="flex gap-2 mt-3 flex-wrap">' + r.photos.map(function (p) { return '<img src="' + p + '" class="w-16 h-16 rounded-lg object-cover border border-slate-200">'; }).join('') + '</div>' : '';
+        const photosHtml = (r.photos && r.photos.length) ? '<div class="flex gap-2 mt-3 flex-wrap">' + r.photos.map(function (p) { return '<img src="' + esc(p) + '" data-lightbox-src="' + esc(p) + '" class="w-16 h-16 rounded-lg object-cover border border-slate-200 cursor-zoom-in hover:opacity-80 transition" alt="">'; }).join('') + '</div>' : '';
         const block = function (label, text, colorClass) {
             if (!text) return '';
             return '<p class="mt-2"><span class="text-[11px] font-extrabold uppercase tracking-wide ' + colorClass + '">' + esc(label) + '</span><br><span class="text-sm text-slate-700">' + esc(text) + '</span></p>';
@@ -140,6 +141,8 @@
         if (!d) return;
         const t = getDestinationText(d);
         titleEl.textContent = t.title;
+        bannerEl.src = (d.images && d.images[0]) || '';
+        bannerEl.alt = t.title;
         statsEl.innerHTML = '';
         listEl.innerHTML = '<p class="text-center text-slate-300 text-sm py-10"><i class="fa-solid fa-spinner fa-spin"></i></p>';
         modal.classList.remove('hidden');
@@ -162,6 +165,11 @@
     grid.addEventListener('click', function (e) {
         const btn = e.target.closest('.dest-card');
         if (btn) openReviews(btn.getAttribute('data-dest-id'));
+    });
+    // click pe o poză dintr-o recenzie: o mărește (js/lightbox.js)
+    listEl.addEventListener('click', function (e) {
+        const pic = e.target.closest('[data-lightbox-src]');
+        if (pic && typeof window.fvOpenLightbox === 'function') window.fvOpenLightbox(pic.getAttribute('data-lightbox-src'), '');
     });
     document.getElementById('closeReviewsModal').addEventListener('click', closeReviews);
     modal.addEventListener('click', function (e) { if (e.target === modal) closeReviews(); });
