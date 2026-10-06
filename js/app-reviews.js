@@ -36,11 +36,11 @@
     }
 
     const UI_TEXT = {
-        ro: { backMain: 'FeelVoyage.ro', heroBadge: 'Recenzii verificate', heroTitle: 'Ce spun călătorii noștri, despre fiecare destinație', heroSubtitle: 'Recenzii reale, lăsate doar de cei care au avut deja cont și au călătorit cu FeelVoyage — cu note, păreri și poze din vacanță.', searchPh: 'Caută o destinație...', empty: 'Nicio destinație nu se potrivește căutării tale.', noReviews: 'Nicio recenzie încă pentru această destinație.', reviews: 'recenzii', review1: 'recenzie', writtenIn: 'Scris în', positive: 'Ce i-a plăcut', negative: 'Ce nu i-a plăcut', extra: 'Alte observații' },
-        en: { backMain: 'FeelVoyage.ro', heroBadge: 'Verified reviews', heroTitle: 'What our travelers say, for every destination', heroSubtitle: 'Real reviews, left only by people who already had an account and traveled with FeelVoyage — with ratings, opinions and trip photos.', searchPh: 'Search a destination...', empty: 'No destination matches your search.', noReviews: 'No reviews yet for this destination.', reviews: 'reviews', review1: 'review', writtenIn: 'Written in', positive: 'What they liked', negative: "What they didn't like", extra: 'Other notes' },
-        it: { backMain: 'FeelVoyage.ro', heroBadge: 'Recensioni verificate', heroTitle: 'Cosa dicono i nostri viaggiatori, per ogni destinazione', heroSubtitle: 'Recensioni vere, lasciate solo da chi aveva già un account e ha viaggiato con FeelVoyage — con voti, opinioni e foto del viaggio.', searchPh: 'Cerca una destinazione...', empty: 'Nessuna destinazione corrisponde alla tua ricerca.', noReviews: 'Ancora nessuna recensione per questa destinazione.', reviews: 'recensioni', review1: 'recensione', writtenIn: 'Scritto in', positive: 'Cosa gli è piaciuto', negative: 'Cosa non gli è piaciuto', extra: 'Altre osservazioni' },
-        fr: { backMain: 'FeelVoyage.ro', heroBadge: 'Avis vérifiés', heroTitle: 'Ce que disent nos voyageurs, pour chaque destination', heroSubtitle: 'De vrais avis, laissés uniquement par des personnes ayant déjà un compte et ayant voyagé avec FeelVoyage — avec notes, opinions et photos du voyage.', searchPh: 'Rechercher une destination...', empty: 'Aucune destination ne correspond à votre recherche.', noReviews: 'Aucun avis pour cette destination pour le moment.', reviews: 'avis', review1: 'avis', writtenIn: 'Écrit en', positive: 'Ce qu\u2019il a aimé', negative: 'Ce qu\u2019il n\u2019a pas aimé', extra: 'Autres remarques' },
-        es: { backMain: 'FeelVoyage.ro', heroBadge: 'Reseñas verificadas', heroTitle: 'Lo que dicen nuestros viajeros, de cada destino', heroSubtitle: 'Reseñas reales, dejadas solo por personas que ya tenían cuenta y viajaron con FeelVoyage — con puntuaciones, opiniones y fotos del viaje.', searchPh: 'Buscar un destino...', empty: 'Ningún destino coincide con tu búsqueda.', noReviews: 'Aún no hay reseñas para este destino.', reviews: 'reseñas', review1: 'reseña', writtenIn: 'Escrito en', positive: 'Qué le gustó', negative: 'Qué no le gustó', extra: 'Otras notas' }
+        ro: { backMain: 'FeelVoyage.ro', heroBadge: 'Recenzii verificate', heroTitle: 'Ce spun călătorii noștri, despre fiecare destinație', heroSubtitle: 'Recenzii reale, lăsate doar de cei care au avut deja cont și au călătorit cu FeelVoyage — cu note, păreri și poze din vacanță.', searchPh: 'Caută o destinație...', empty: 'Nicio destinație nu se potrivește căutării tale.', noReviews: 'Nicio recenzie încă pentru această destinație.', reviews: 'recenzii', review1: 'recenzie', writtenIn: 'Scris în', positive: 'Ce i-a plăcut', negative: 'Ce nu i-a plăcut', extra: 'Alte observații', starFilterAll: 'Toate' },
+        en: { backMain: 'FeelVoyage.ro', heroBadge: 'Verified reviews', heroTitle: 'What our travelers say, for every destination', heroSubtitle: 'Real reviews, left only by people who already had an account and traveled with FeelVoyage — with ratings, opinions and trip photos.', searchPh: 'Search a destination...', empty: 'No destination matches your search.', noReviews: 'No reviews yet for this destination.', reviews: 'reviews', review1: 'review', writtenIn: 'Written in', positive: 'What they liked', negative: "What they didn't like", extra: 'Other notes', starFilterAll: 'All' },
+        it: { backMain: 'FeelVoyage.ro', heroBadge: 'Recensioni verificate', heroTitle: 'Cosa dicono i nostri viaggiatori, per ogni destinazione', heroSubtitle: 'Recensioni vere, lasciate solo da chi aveva già un account e ha viaggiato con FeelVoyage — con voti, opinioni e foto del viaggio.', searchPh: 'Cerca una destinazione...', empty: 'Nessuna destinazione corrisponde alla tua ricerca.', noReviews: 'Ancora nessuna recensione per questa destinazione.', reviews: 'recensioni', review1: 'recensione', writtenIn: 'Scritto in', positive: 'Cosa gli è piaciuto', negative: 'Cosa non gli è piaciuto', extra: 'Altre osservazioni', starFilterAll: 'Tutte' },
+        fr: { backMain: 'FeelVoyage.ro', heroBadge: 'Avis vérifiés', heroTitle: 'Ce que disent nos voyageurs, pour chaque destination', heroSubtitle: 'De vrais avis, laissés uniquement par des personnes ayant déjà un compte et ayant voyagé avec FeelVoyage — avec notes, opinions et photos du voyage.', searchPh: 'Rechercher une destination...', empty: 'Aucune destination ne correspond à votre recherche.', noReviews: 'Aucun avis pour cette destination pour le moment.', reviews: 'avis', review1: 'avis', writtenIn: 'Écrit en', positive: 'Ce qu\u2019il a aimé', negative: 'Ce qu\u2019il n\u2019a pas aimé', extra: 'Autres remarques', starFilterAll: 'Toutes' },
+        es: { backMain: 'FeelVoyage.ro', heroBadge: 'Reseñas verificadas', heroTitle: 'Lo que dicen nuestros viajeros, de cada destino', heroSubtitle: 'Reseñas reales, dejadas solo por personas que ya tenían cuenta y viajaron con FeelVoyage — con puntuaciones, opiniones y fotos del viaje.', searchPh: 'Buscar un destino...', empty: 'Ningún destino coincide con tu búsqueda.', noReviews: 'Aún no hay reseñas para este destino.', reviews: 'reseñas', review1: 'reseña', writtenIn: 'Escrito en', positive: 'Qué le gustó', negative: 'Qué no le gustó', extra: 'Otras notas', starFilterAll: 'Todas' }
     };
     function ui(key) { return (UI_TEXT[currentLang] && UI_TEXT[currentLang][key]) || UI_TEXT.ro[key]; }
 
@@ -79,12 +79,14 @@
         '</button>';
     }
 
+    // scoate diacriticele, ca „Baile Herculane” (fără semne) să găsească „Băile Herculane” — numele afișat nu se schimbă
+    function stripDiacritics(s) { return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
     function renderGrid(filterText) {
-        const q = (filterText || '').trim().toLowerCase();
+        const q = stripDiacritics((filterText || '').trim());
         const list = destinations.filter(function (d) {
             if (!q) return true;
             const t = getDestinationText(d);
-            return t.title.toLowerCase().indexOf(q) > -1;
+            return stripDiacritics(t.title).indexOf(q) > -1;
         });
         emptyMsg.classList.toggle('hidden', list.length > 0);
         grid.innerHTML = list.map(destCardHtml).join('');
@@ -137,6 +139,34 @@
         '</div>';
     }
 
+    // Filtru „doar recenziile cu N stele” per pachet — „5” înseamnă exact 5 stele, „4” înseamnă 4 ȘI 5 (prag minim).
+    let allReviewsForDest = [];
+    let starFilter = 0;   // 0 = toate
+    const starFilterEl = document.getElementById('reviewsStarFilter');
+    function starFilterBtnHtml(value, label) {
+        const active = starFilter === value;
+        return '<button type="button" data-star-filter="' + value + '" class="shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-bold border transition ' +
+            (active ? 'bg-amber-400 border-amber-400 text-slate-900' : 'bg-white border-slate-200 text-slate-500 hover:border-amber-300') + '">' + label + '</button>';
+    }
+    function renderStarFilterBar() {
+        if (!starFilterEl) return;
+        starFilterEl.innerHTML = starFilterBtnHtml(0, ui('starFilterAll') || 'Toate') +
+            [5, 4, 3, 2, 1].map(function (n) { return starFilterBtnHtml(n, n + '★+'); }).join('');
+    }
+    function renderFilteredList() {
+        const list = starFilter ? allReviewsForDest.filter(function (r) { return Math.round(r.rating) >= starFilter; }) : allReviewsForDest;
+        listEl.innerHTML = list.length ? list.map(reviewCardHtml).join('') : '<p class="text-center text-slate-300 text-sm py-10">' + ui('noReviews') + '</p>';
+    }
+    if (starFilterEl) {
+        starFilterEl.addEventListener('click', function (e) {
+            const btn = e.target.closest('[data-star-filter]');
+            if (!btn) return;
+            starFilter = parseInt(btn.getAttribute('data-star-filter'), 10) || 0;
+            renderStarFilterBar();
+            renderFilteredList();
+        });
+    }
+
     function openReviews(destId) {
         const d = destinations.find(function (x) { return x.id === destId; });
         if (!d) return;
@@ -145,6 +175,8 @@
         bannerEl.src = (d.images && d.images[0]) || '';
         bannerEl.alt = t.title;
         statsEl.innerHTML = '';
+        starFilter = 0;
+        renderStarFilterBar();
         listEl.innerHTML = '<p class="text-center text-slate-300 text-sm py-10"><i class="fa-solid fa-spinner fa-spin"></i></p>';
         modal.classList.remove('hidden');
         requestAnimationFrame(function () { panel.classList.remove('scale-95', 'opacity-0'); });
@@ -155,7 +187,8 @@
             statsEl.innerHTML = '<span class="text-amber-500 text-sm">' + starsHtml(stats.avg, 'text-xs') + '</span><span class="font-bold text-slate-800">' + stats.avg.toFixed(1) + '</span><span class="text-slate-400">(' + stats.count + ' ' + (stats.count === 1 ? ui('review1') : ui('reviews')) + ')</span>';
         });
         unsubReviews = window.FVReviewsBackend.onDestinationReviews(destId, function (list) {
-            listEl.innerHTML = list.length ? list.map(reviewCardHtml).join('') : '<p class="text-center text-slate-300 text-sm py-10">' + ui('noReviews') + '</p>';
+            allReviewsForDest = list;
+            renderFilteredList();
         });
     }
     function closeReviews() {

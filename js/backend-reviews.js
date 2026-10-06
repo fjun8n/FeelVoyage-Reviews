@@ -1,7 +1,8 @@
-/* FeelVoyage Reviews — conector minimal Firebase, DOAR CITIRE. Acest site nu scrie niciodată în baza de date
-   (recenziile se adaugă exclusiv de pe site-ul principal, FeelVoyage.ro, unde ai nevoie de cont). Folosește
-   aceeași bază de date (același js/firebase-config.js, copiat din proiectul principal) — dacă actualizezi
-   cheile Firebase pe site-ul principal, copiază din nou fișierul și aici. */
+/* FeelVoyage Reviews — conector minimal Firebase, aproape exclusiv CITIRE (recenziile se adaugă doar de pe
+   site-ul principal, unde ai nevoie de cont) — singura excepție e submitBugReport, pentru butonul „Raportează
+   un bug” din subsol, care nu cere cont pe niciunul din cele două site-uri. Folosește aceeași bază de date
+   (același js/firebase-config.js, copiat din proiectul principal) — dacă actualizezi cheile Firebase pe
+   site-ul principal, copiază din nou fișierul și aici. */
 (function () {
     'use strict';
     const SDK_BASE = 'https://www.gstatic.com/firebasejs/12.19.0/';
@@ -12,7 +13,8 @@
         console.info('[FeelVoyage Reviews] Firebase nu e configurat — copiază js/firebase-config.js de pe site-ul principal.');
         window.FVReviewsBackend = {
             onDestinationReviews: function (destId, cb) { cb([]); return function () {}; },
-            onReviewStats: function (destId, cb) { cb({ avg: 5, count: 0 }); return function () {}; }
+            onReviewStats: function (destId, cb) { cb({ avg: 5, count: 0 }); return function () {}; },
+            submitBugReport: function () { return Promise.reject(new Error('unsupported')); }
         };
         return;
     }
@@ -76,9 +78,21 @@
         return function () { cancelled = true; unsub(); };
     }
 
+    // Butonul „Raportează un bug” din subsol — funcționează fără cont (acest site nu are autentificare).
+    function submitBugReport(report) {
+        return ready.then(function (ok) {
+            if (!ok || !db) throw new Error('network');
+            const payload = { text: String(report.text || '').slice(0, 2000), status: 'nou', createdAt: dbM.serverTimestamp(), site: 'reviews', page: String((report.page || '').slice(0, 200)) };
+            if (report.email) payload.email = String(report.email).slice(0, 120);
+            const newRef = dbM.push(dbM.ref(db, 'bugReports'));
+            return dbM.set(newRef, payload).then(function () { return newRef.key; });
+        });
+    }
+
     window.FVReviewsBackend = {
         onDestinationReviews: onDestinationReviews,
         onReviewStats: onReviewStats,
-        onAllTopReviews: onAllTopReviews
+        onAllTopReviews: onAllTopReviews,
+        submitBugReport: submitBugReport
     };
 })();
