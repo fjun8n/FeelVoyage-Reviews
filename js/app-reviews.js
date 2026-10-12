@@ -18,6 +18,10 @@
         if (dict && dict[key] !== undefined) return dict[key];
         return fallback !== undefined ? fallback : key;
     }
+    // Expusă global: js/theme.js și js/bugreport.js (copiate identic de pe site-ul principal) își caută propria
+    // traducere prin `typeof tr === 'function'` — fără linia asta, pe acest site funcția rămâne locală acestui IIFE,
+    // iar cele două scripturi arată mereu textul românesc implicit, indiferent de limba aleasă (bug găsit în jurnal).
+    window.tr = tr;
     function getDestinationText(item) {
         const prefix = 'dest.' + item.id + '.';
         return {
@@ -153,6 +157,23 @@
         starFilterEl.innerHTML = starFilterBtnHtml(0, ui('starFilterAll') || 'Toate') +
             [5, 4, 3, 2, 1].map(function (n) { return starFilterBtnHtml(n, n + '★+'); }).join('');
     }
+    // Al doilea nivel al filtrului de conținut (js/moderation.js): recenziile se verifică la scriere, pe site-ul
+    // principal, dar le verificăm din nou AICI, la afișare. Așa, o recenzie mai veche (scrisă înainte de filtru)
+    // sau una strecurată altfel în baza de date nu ajunge sub ochii vizitatorilor. Nu se șterge nimic din baza de
+    // date — doar nu se afișează; administratorul o vede în continuare și o poate șterge de pe site-ul principal.
+    function cleanList(list) {
+        if (!window.FVModeration) return list;
+        var hidden = 0;
+        var out = (list || []).filter(function (r) {
+            var bad = !FVModeration.checkText([r.positive, r.negative, r.extra].filter(Boolean).join(' ')).ok
+                || !FVModeration.checkName(r.name || '').ok;
+            if (bad) hidden++;
+            return !bad;
+        });
+        if (hidden && window.FVLog) FVLog.warn('mod', 'review.hidden', { n: hidden });   // niciodată textul recenziei
+        return out;
+    }
+
     function renderFilteredList() {
         const list = starFilter ? allReviewsForDest.filter(function (r) { return Math.round(r.rating) >= starFilter; }) : allReviewsForDest;
         listEl.innerHTML = list.length ? list.map(reviewCardHtml).join('') : '<p class="text-center text-slate-300 text-sm py-10">' + ui('noReviews') + '</p>';
@@ -187,7 +208,7 @@
             statsEl.innerHTML = '<span class="text-amber-500 text-sm">' + starsHtml(stats.avg, 'text-xs') + '</span><span class="font-bold text-slate-800">' + stats.avg.toFixed(1) + '</span><span class="text-slate-400">(' + stats.count + ' ' + (stats.count === 1 ? ui('review1') : ui('reviews')) + ')</span>';
         });
         unsubReviews = window.FVReviewsBackend.onDestinationReviews(destId, function (list) {
-            allReviewsForDest = list;
+            allReviewsForDest = cleanList(list);
             renderFilteredList();
         });
     }
@@ -216,6 +237,9 @@
         localStorage.setItem(LANG_KEY, currentLang);
         applyStaticText();
         renderGrid(document.getElementById('destSearch').value);
+        // la fel ca pe site-ul principal (js/app.js): anunță celelalte scripturi (theme.js, admin-auth.js, logviewer.js...)
+        // că limba s-a schimbat, ca să-și reactualizeze și ele textele traduse — altfel rămâneau mereu în română (bug găsit în jurnal)
+        document.dispatchEvent(new CustomEvent('fv:language', { detail: { lang: currentLang } }));
     });
 
     /* ---------- pornire ---------- */
